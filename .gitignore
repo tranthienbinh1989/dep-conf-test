@@ -1,4 +1,6 @@
 vendor
 .idea/
 package-a
+package-b
+package-c
 satis

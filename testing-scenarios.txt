@@ -1,0 +1,14 @@
+1. public is higher (package-a):
+  a. public: 1.0.3, private: 1.0.1, composer.json: 1.0.3, expected: warning;
+  b. public: 1.0.3, private: 1.0.1, composer.json: 1.0.*, expected: error;
+  c. public: 1.0.6, private: 1.0.5, composer.json: ^1.0.5, expected: error;
+
+2. private is higher (package-b):
+  a. public: 1.0.1, private: 1.0.3, composer.json: 1.0.*, expected: no error or warning;
+  b. public: 1.0.1, private: 1.0.5, composer.json: 1.0.5, expected: nothing;
+  c. public: 1.0.1, private: 1.0.5, composer.json: ^1.0.4, expected: nothing;
+
+3. same: (package-c)
+  a. public: 1.0.1, private: 1.0.1, composer.json: 1.0.*, expected: nothing
+  b. public: 1.0.1, private: 1.0.5, composer.json: 1.0.5, expected: nothing;
+  c. public: 1.0.1, private: 1.0.5, composer.json: ^1.0.4, expected: nothing;

@@ -1,22 +1,22 @@
 {
     "packages": {
-        "nathanjosiah/dep-conf-test-package-a": [
+        "nathanjosiah/dep-conf-test-package-c": [
             {
-                "name": "nathanjosiah/dep-conf-test-package-a",
+                "name": "nathanjosiah/dep-conf-test-package-c",
                 "version": "1.0.1",
                 "version_normalized": "1.0.1.0",
                 "source": {
                     "type": "git",
-                    "url": "https://github.com/nathanjosiah/dep-conf-test-package-a.git",
-                    "reference": "f831f644130afbe11cf18dfd0a16a1e24a09e199"
+                    "url": "https://github.com/nathanjosiah/dep-conf-test-package-c.git",
+                    "reference": "19d3d02d408e9678526a7c63a8164b3ad5bc1c83"
                 },
                 "dist": {
                     "type": "zip",
-                    "url": "https://api.github.com/repos/nathanjosiah/dep-conf-test-package-a/zipball/f831f644130afbe11cf18dfd0a16a1e24a09e199",
-                    "reference": "f831f644130afbe11cf18dfd0a16a1e24a09e199",
+                    "url": "https://api.github.com/repos/nathanjosiah/dep-conf-test-package-c/zipball/19d3d02d408e9678526a7c63a8164b3ad5bc1c83",
+                    "reference": "19d3d02d408e9678526a7c63a8164b3ad5bc1c83",
                     "shasum": ""
                 },
-                "time": "2021-09-21T18:26:14+00:00",
+                "time": "2021-09-21T18:20:10+00:00",
                 "type": "library",
                 "autoload": {
                     "psr-4": {
@@ -30,8 +30,8 @@
                     }
                 ],
                 "support": {
-                    "source": "https://github.com/nathanjosiah/dep-conf-test-package-a/tree/1.0.1",
-                    "issues": "https://github.com/nathanjosiah/dep-conf-test-package-a/issues"
+                    "source": "https://github.com/nathanjosiah/dep-conf-test-package-c/tree/1.0.1",
+                    "issues": "https://github.com/nathanjosiah/dep-conf-test-package-c/issues"
                 }
             }
         ]
