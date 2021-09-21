@@ -1,8 +1,10 @@
 {
-  "name": "nathanjosiah/dep-conf-test-package-a",
+  "name": "nathanjosiah/dep-conf-test",
   "homepage": "https://github.com/nathanjosiah/dep-conf-test-package-a",
   "repositories": [
     { "type": "vcs", "url": "git@github.com:nathanjosiah/dep-conf-test-package-a.git" }
   ],
-  "require-all": true
+  "require": {
+    "nathanjosiah/dep-conf-test-package-a": "1.0.0"
+  }
 }
