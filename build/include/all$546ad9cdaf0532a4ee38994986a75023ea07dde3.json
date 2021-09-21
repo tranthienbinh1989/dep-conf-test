@@ -1,0 +1,73 @@
+{
+    "packages": {
+        "nathanjosiah/dep-conf-test-package-a": {
+            "1.0.0": {
+                "name": "nathanjosiah/dep-conf-test-package-a",
+                "version": "1.0.0",
+                "version_normalized": "1.0.0.0",
+                "source": {
+                    "type": "git",
+                    "url": "git@github.com:nathanjosiah/dep-conf-test-package-a.git",
+                    "reference": "a27c9c013c628bd889db2255a662786ac244e0b9"
+                },
+                "dist": {
+                    "type": "zip",
+                    "url": "https://api.github.com/repos/nathanjosiah/dep-conf-test-package-a/zipball/a27c9c013c628bd889db2255a662786ac244e0b9",
+                    "reference": "a27c9c013c628bd889db2255a662786ac244e0b9",
+                    "shasum": ""
+                },
+                "time": "2021-09-21T14:50:14+00:00",
+                "type": "library",
+                "autoload": {
+                    "psr-4": {
+                        "Nathanjosiah\\DepConfTestPackageA\\": "src/"
+                    }
+                },
+                "authors": [
+                    {
+                        "name": "Nathan Smith",
+                        "email": "nathsmit@adobe.com"
+                    }
+                ],
+                "support": {
+                    "source": "https://github.com/nathanjosiah/dep-conf-test-package-a/tree/1.0.0",
+                    "issues": "https://github.com/nathanjosiah/dep-conf-test-package-a/issues"
+                }
+            },
+            "dev-master": {
+                "name": "nathanjosiah/dep-conf-test-package-a",
+                "version": "dev-master",
+                "version_normalized": "dev-master",
+                "source": {
+                    "type": "git",
+                    "url": "git@github.com:nathanjosiah/dep-conf-test-package-a.git",
+                    "reference": "a27c9c013c628bd889db2255a662786ac244e0b9"
+                },
+                "dist": {
+                    "type": "zip",
+                    "url": "https://api.github.com/repos/nathanjosiah/dep-conf-test-package-a/zipball/a27c9c013c628bd889db2255a662786ac244e0b9",
+                    "reference": "a27c9c013c628bd889db2255a662786ac244e0b9",
+                    "shasum": ""
+                },
+                "time": "2021-09-21T14:50:14+00:00",
+                "default-branch": true,
+                "type": "library",
+                "autoload": {
+                    "psr-4": {
+                        "Nathanjosiah\\DepConfTestPackageA\\": "src/"
+                    }
+                },
+                "authors": [
+                    {
+                        "name": "Nathan Smith",
+                        "email": "nathsmit@adobe.com"
+                    }
+                ],
+                "support": {
+                    "source": "https://github.com/nathanjosiah/dep-conf-test-package-a/tree/1.0.0",
+                    "issues": "https://github.com/nathanjosiah/dep-conf-test-package-a/issues"
+                }
+            }
+        }
+    }
+}

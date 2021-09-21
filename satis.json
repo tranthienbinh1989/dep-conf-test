@@ -1,0 +1,8 @@
+{
+  "name": "nathanjosiah/dep-conf-test-package-a",
+  "homepage": "https://github.com/nathanjosiah/dep-conf-test-package-a",
+  "repositories": [
+    { "type": "vcs", "url": "git@github.com:nathanjosiah/dep-conf-test-package-a.git" }
+  ],
+  "require-all": true
+}

@@ -1,0 +1,23 @@
+{
+    "name": "nathsmit/dep-conf-test",
+    "type": "project",
+    "authors": [
+        {
+            "name": "Nathan Smith",
+            "email": "nathsmit@adobe.com"
+        }
+    ],
+    "minimum-stability": "dev",
+    "require": {
+        "magento/composer-dependency-version-audit-plugin": "dev-AC-970"
+    },
+    "repositories": {
+        "plugin": {
+            "type": "git",
+            "url": "git@github.com:magento-cia/composer-dependency-version-audit-plugin.git"
+        }
+    },
+    "scripts": {
+        "build-satis": "satis/bin/satis build satis.json build/"
+    }
+}
