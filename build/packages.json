@@ -5,7 +5,7 @@
             "sha1": "ebf640451f477e4d0f2bc4118c33c48f8ba40785"
         }
     },
-    "metadata-url": "p2/%package%.json",
+    "metadata-url": "/p2/%package%.json",
     "available-packages": [
         "nathanjosiah/dep-conf-test-package-a"
     ]
