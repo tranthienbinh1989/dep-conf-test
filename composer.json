@@ -12,7 +12,7 @@
         "php": "^7.4",
         "ext-json": "*",
         "magento\/composer-dependency-version-audit-plugin": "dev-AC-970",
-        "nathanjosiah/dep-conf-test-package-a": "dev-master"
+        "nathanjosiah/dep-conf-test-package-a": "^1.0.1"
     },
     "repositories": {
         "dep": {

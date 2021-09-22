@@ -3,20 +3,20 @@
         "nathanjosiah/dep-conf-test-package-a": [
             {
                 "name": "nathanjosiah/dep-conf-test-package-a",
-                "version": "1.0.5",
-                "version_normalized": "1.0.5.0",
+                "version": "1.0.7",
+                "version_normalized": "1.0.7.0",
                 "source": {
                     "type": "git",
                     "url": "https://github.com/nathanjosiah/dep-conf-test-package-a.git",
-                    "reference": "7a15e7758885ed71df5c4c58d5c6b1f704742879"
+                    "reference": "52a2a420ec02071e037ab75222b8aa9ada324b34"
                 },
                 "dist": {
                     "type": "zip",
-                    "url": "https://api.github.com/repos/nathanjosiah/dep-conf-test-package-a/zipball/7a15e7758885ed71df5c4c58d5c6b1f704742879",
-                    "reference": "7a15e7758885ed71df5c4c58d5c6b1f704742879",
+                    "url": "https://api.github.com/repos/nathanjosiah/dep-conf-test-package-a/zipball/52a2a420ec02071e037ab75222b8aa9ada324b34",
+                    "reference": "52a2a420ec02071e037ab75222b8aa9ada324b34",
                     "shasum": ""
                 },
-                "time": "2021-09-22T20:46:59+00:00",
+                "time": "2021-09-22T20:57:38+00:00",
                 "type": "library",
                 "autoload": {
                     "psr-4": {
@@ -30,7 +30,7 @@
                     }
                 ],
                 "support": {
-                    "source": "https://github.com/nathanjosiah/dep-conf-test-package-a/tree/1.0.5",
+                    "source": "https://github.com/nathanjosiah/dep-conf-test-package-a/tree/1.0.7",
                     "issues": "https://github.com/nathanjosiah/dep-conf-test-package-a/issues"
                 }
             }

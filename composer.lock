@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "f58699288fb95b09861c8fa28d224105",
+    "content-hash": "6e1e4a0b88ea49dad69547a8df507a5c",
     "packages": [
         {
             "name": "composer/ca-bundle",
@@ -581,19 +581,18 @@
         },
         {
             "name": "nathanjosiah/dep-conf-test-package-a",
-            "version": "dev-master",
+            "version": "1.0.6",
             "source": {
                 "type": "git",
                 "url": "https://github.com/nathanjosiah/dep-conf-test-package-a-malicious.git",
-                "reference": "99e705dbe0b7cdd3faaa5b877e9a2cf66b3df46e"
+                "reference": "4bad37370ee0063922d6f530a5e3446e05f9e5bf"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/nathanjosiah/dep-conf-test-package-a-malicious/zipball/99e705dbe0b7cdd3faaa5b877e9a2cf66b3df46e",
-                "reference": "99e705dbe0b7cdd3faaa5b877e9a2cf66b3df46e",
+                "url": "https://api.github.com/repos/nathanjosiah/dep-conf-test-package-a-malicious/zipball/4bad37370ee0063922d6f530a5e3446e05f9e5bf",
+                "reference": "4bad37370ee0063922d6f530a5e3446e05f9e5bf",
                 "shasum": ""
             },
-            "default-branch": true,
             "type": "library",
             "autoload": {
                 "psr-4": {
@@ -609,9 +608,9 @@
             ],
             "support": {
                 "issues": "https://github.com/nathanjosiah/dep-conf-test-package-a-malicious/issues",
-                "source": "https://github.com/nathanjosiah/dep-conf-test-package-a-malicious/tree/1.0.3"
+                "source": "https://github.com/nathanjosiah/dep-conf-test-package-a-malicious/tree/1.0.6"
             },
-            "time": "2021-09-22T20:40:23+00:00"
+            "time": "2021-09-22T20:47:06+00:00"
         },
         {
             "name": "psr/container",
@@ -1893,8 +1892,7 @@
     "aliases": [],
     "minimum-stability": "dev",
     "stability-flags": {
-        "magento/composer-dependency-version-audit-plugin": 20,
-        "nathanjosiah/dep-conf-test-package-a": 20
+        "magento/composer-dependency-version-audit-plugin": 20
     },
     "prefer-stable": false,
     "prefer-lowest": false,
