@@ -51,7 +51,7 @@ info('Building packages');
 $satisPath = __DIR__ . \DIRECTORY_SEPARATOR . 'satis.json';
 $satisConfig = json_decode(file_get_contents($satisPath), true);
 $satisConfig['require'][$packageConfig['package-name']] = $packageConfig['private'];
-file_put_contents($satisPath, json_encode($satisPath, \JSON_PRETTY_PRINT));
+file_put_contents($satisPath, json_encode($satisConfig, \JSON_PRETTY_PRINT));
 
 execShell("composer run-script build-satis");
 $packageJsonPath = __DIR__ . \DIRECTORY_SEPARATOR . 'build' . \DIRECTORY_SEPARATOR . 'packages.json';

@@ -1,7 +1,7 @@
 {
     "packages": {
-        "nathanjosiah/dep-conf-test-package-a": [
-            {
+        "nathanjosiah/dep-conf-test-package-a": {
+            "1.0.3": {
                 "name": "nathanjosiah/dep-conf-test-package-a",
                 "version": "1.0.3",
                 "version_normalized": "1.0.3.0",
@@ -34,6 +34,6 @@
                     "issues": "https://github.com/nathanjosiah/dep-conf-test-package-a/issues"
                 }
             }
-        ]
+        }
     }
 }
