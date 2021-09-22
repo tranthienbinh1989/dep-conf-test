@@ -1,5 +1,5 @@
 {
-    "name": "nathsmit/dep-conf-test",
+    "name": "nathsmit\/dep-conf-test",
     "type": "project",
     "authors": [
         {
@@ -9,25 +9,25 @@
     ],
     "minimum-stability": "dev",
     "require": {
-        "nathanjosiah/dep-conf-test-package-a": "1.0.3",
-        "magento/composer-dependency-version-audit-plugin": "dev-AC-970"
+        "php": "^7.4",
+        "ext-json": "*",
+        "magento\/composer-dependency-version-audit-plugin": "dev-AC-970"
     },
     "repositories": {
-        "plugin": {
+        "dep": {
             "type": "git",
-            "url": "git@github.com:magento-cia/composer-dependency-version-audit-plugin.git"
+            "url": "git@github.com:magento-cia\/composer-dependency-version-audit-plugin.git"
         },
-        "composer": {
+        "packagist": {
             "type": "composer",
-            "url": "https://repo.packagist.org/",
-            "canonical": true
+            "url": "https:\/\/repo.packagist.org"
         },
         "private": {
             "type": "composer",
-            "url": "https://flamboyant-haibt-5db8f9.netlify.app/"
+            "url": "https:\/\/flamboyant-haibt-5db8f9.netlify.app"
         }
     },
     "scripts": {
-        "build-satis": "satis/bin/satis build satis.json build/"
+        "build-satis": "satis\/bin\/satis build satis.json build\/"
     }
 }

@@ -4,9 +4,8 @@ $packagePath = __DIR__ . DIRECTORY_SEPARATOR . 'package-a';
 
 // Refer to the testing-scenarios.txt for a list of configuration to test
 $packageConfig = [
-    'public' => '1.0.3',
-    'private' => '1.0.1',
-    'composer' => '1.0.3',
+    'public' => '1.0.1',
+    'private' => '1.0.3',
     'private-remote' => 'origin',
     'public-remote' => 'public',
     'package-name' => 'nathanjosiah/dep-conf-test-package-a'
