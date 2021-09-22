@@ -8,15 +8,15 @@
                 "source": {
                     "type": "git",
                     "url": "https://github.com/nathanjosiah/dep-conf-test-package-a.git",
-                    "reference": "81d19a4aef6114b516959bf29a243379e7b2f240"
+                    "reference": "2df0a5953ff793411f8a6a70daab250f14515004"
                 },
                 "dist": {
                     "type": "zip",
-                    "url": "https://api.github.com/repos/nathanjosiah/dep-conf-test-package-a/zipball/81d19a4aef6114b516959bf29a243379e7b2f240",
-                    "reference": "81d19a4aef6114b516959bf29a243379e7b2f240",
+                    "url": "https://api.github.com/repos/nathanjosiah/dep-conf-test-package-a/zipball/2df0a5953ff793411f8a6a70daab250f14515004",
+                    "reference": "2df0a5953ff793411f8a6a70daab250f14515004",
                     "shasum": ""
                 },
-                "time": "2021-09-22T20:24:21+00:00",
+                "time": "2021-09-22T20:31:57+00:00",
                 "type": "library",
                 "autoload": {
                     "psr-4": {

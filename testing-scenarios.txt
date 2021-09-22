@@ -4,14 +4,16 @@
   a. public: 1.0.3, private: 1.0.1, composer.json: 1.0.3, expected: warning;
   b. public: 1.0.3, private: 1.0.1, composer.json: 1.0.*, expected: error;
   c. public: 1.0.3, private: 1.0.1, composer.json: ^1.0.1, expected: error;
+  d. public: 1.0.3, private: 1.0.1, composer.json: *, expected: error;
 
 2. private is higher
   a. public: 1.0.1, private: 1.0.3, composer.json: 1.0.*, expected: nothing;
   b. public: 1.0.1, private: 1.0.3, composer.json: 1.0.3, expected: nothing;
   c. public: 1.0.1, private: 1.0.3, composer.json: ^1.0.3, expected: nothing;
+  d. public: 1.0.1, private: 1.0.3, composer.json: *, expected: nothing;
 
 3. same for both
-  a. public: 1.0.1, private: 1.0.1, composer.json: 1.0.*, expected: nothing
+  a. public: 1.0.3, private: 1.0.3, composer.json: 1.0.*, expected: nothing
   b. public: 1.0.3, private: 1.0.3, composer.json: 1.0.3, expected: nothing;
   c. public: 1.0.3, private: 1.0.3, composer.json: ^1.0.1, expected: nothing;
-  c. public: 1.0.3, private: 1.0.3, composer.json: ^1.0.3, expected: nothing;
+  d. public: 1.0.3, private: 1.0.3, composer.json: *, expected: nothing;

@@ -20,7 +20,8 @@
         },
         "packagist": {
             "type": "composer",
-            "url": "https:\/\/repo.packagist.org"
+            "url": "https:\/\/repo.packagist.org",
+            "canonical": false
         },
         "private": {
             "type": "composer",
