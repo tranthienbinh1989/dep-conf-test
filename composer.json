@@ -11,7 +11,8 @@
     "require": {
         "php": "^7.4",
         "ext-json": "*",
-        "magento\/composer-dependency-version-audit-plugin": "dev-AC-970"
+        "magento\/composer-dependency-version-audit-plugin": "dev-AC-970",
+        "nathanjosiah/dep-conf-test-package-a": "dev-master"
     },
     "repositories": {
         "dep": {

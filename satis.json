@@ -8,6 +8,6 @@
         }
     ],
     "require": {
-        "nathanjosiah\/dep-conf-test-package-a": "1.0.1"
+        "nathanjosiah\/dep-conf-test-package-a": "1.0.5"
     }
 }

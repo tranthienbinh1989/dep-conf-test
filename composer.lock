@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "1927e9cecb42a61d73df9c0581e7d94a",
+    "content-hash": "f58699288fb95b09861c8fa28d224105",
     "packages": [
         {
             "name": "composer/ca-bundle",
@@ -578,6 +578,40 @@
             ],
             "description": "Validating packages through a composer plugin",
             "time": "2021-09-22T20:01:25+00:00"
+        },
+        {
+            "name": "nathanjosiah/dep-conf-test-package-a",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/nathanjosiah/dep-conf-test-package-a-malicious.git",
+                "reference": "99e705dbe0b7cdd3faaa5b877e9a2cf66b3df46e"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/nathanjosiah/dep-conf-test-package-a-malicious/zipball/99e705dbe0b7cdd3faaa5b877e9a2cf66b3df46e",
+                "reference": "99e705dbe0b7cdd3faaa5b877e9a2cf66b3df46e",
+                "shasum": ""
+            },
+            "default-branch": true,
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Nathanjosiah\\DepConfTestPackageA\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "authors": [
+                {
+                    "name": "Nathan Smith",
+                    "email": "nathsmit@adobe.com"
+                }
+            ],
+            "support": {
+                "issues": "https://github.com/nathanjosiah/dep-conf-test-package-a-malicious/issues",
+                "source": "https://github.com/nathanjosiah/dep-conf-test-package-a-malicious/tree/1.0.3"
+            },
+            "time": "2021-09-22T20:40:23+00:00"
         },
         {
             "name": "psr/container",
@@ -1859,7 +1893,8 @@
     "aliases": [],
     "minimum-stability": "dev",
     "stability-flags": {
-        "magento/composer-dependency-version-audit-plugin": 20
+        "magento/composer-dependency-version-audit-plugin": 20,
+        "nathanjosiah/dep-conf-test-package-a": 20
     },
     "prefer-stable": false,
     "prefer-lowest": false,
