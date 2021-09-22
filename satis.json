@@ -1,10 +1,1 @@
-{
-  "name": "nathanjosiah/dep-conf-test",
-  "homepage": "https://github.com/nathanjosiah/dep-conf-test-package-a",
-  "repositories": [
-    { "type": "vcs", "url": "git@github.com:nathanjosiah/dep-conf-test-package-a.git" }
-  ],
-  "require": {
-    "nathanjosiah/dep-conf-test-package-a": "1.0.1"
-  }
-}
+"\/Users\/nathsmit\/dep-conf-test\/satis.json"
