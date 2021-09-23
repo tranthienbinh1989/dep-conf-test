@@ -54,7 +54,6 @@ function info(string $text) {
 function error(string $text) {
     echo "\033[31m" . $text . "\033[0m" . \PHP_EOL;
 }
-
 function execShell(string $cmd) {
     echo "\033[32m" . 'Running: ' . "\033[33m". $cmd . "\033[0m" . \PHP_EOL;
     $result = `$cmd`;
@@ -62,15 +61,13 @@ function execShell(string $cmd) {
 
     return $result;
 }
-
 function readComposer(): array {
     return json_decode(file_get_contents(__DIR__ . \DIRECTORY_SEPARATOR . 'composer.json'), true);
 }
 function writeComposer(array $composer): void {
     file_put_contents(__DIR__ . \DIRECTORY_SEPARATOR . 'composer.json', json_encode($composer, \JSON_PRETTY_PRINT));
 }
-
-function isPackageInstalled(string $packageName): string
+function getInstalledPackageVersion(string $packageName): string
 {
     $result = execShell('composer show ' . escapeshellarg($packageName) . ' 2>&1');
     preg_match('/versions\s+:\s+(?P<version>.*)/', $result, $matches);
@@ -83,18 +80,12 @@ function composerRequire(string $packageName, string $constraint): string {
     return execShell('composer require ' . escapeshellarg($packageName) . ($constraint ? ' ' . escapeshellarg($constraint): '') . ' 2>&1');
 }
 function composerRemove(string $packageName): void {
-    if (isPackageInstalled($packageName)) {
+    if (getInstalledPackageVersion($packageName)) {
         execShell('composer remove ' . escapeshellarg($packageName));
     }
 }
 
-function configureComposer(array $configItem, array $publicRepo, array $privateRepo): void
-{
-
-}
-
-
-//public_before_private	public_is_canonical	private_is_canonical	constraint
+info('Checking if package is already installed before starting');
 composerRemove($packageName);
 
 foreach ($config as &$configItem) {
@@ -128,13 +119,13 @@ foreach ($config as &$configItem) {
     $result = composerRequire($packageName, $configItem['constraint']);
     $hadAuditErrorMessage = strpos($result, 'might\'ve') !== false;
     $hadComposerErrorMessage = strpos($result, 'higher repository priority') !== false;
-    $isInstalled = isPackageInstalled($packageName);
+    $installedPackageVersion = getInstalledPackageVersion($packageName);
 
-    $configItem['version_installed'] = $isInstalled;
+    $configItem['version_installed'] = $installedPackageVersion;
     $configItem['had_audit_message'] = $hadAuditErrorMessage;
     $configItem['had_composer_error_message'] = $hadComposerErrorMessage;
 
-    if ($isInstalled) {
+    if ($installedPackageVersion) {
         info('Removing package');
         composerRemove($packageName);
     }
