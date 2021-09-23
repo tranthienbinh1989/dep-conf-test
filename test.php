@@ -1,24 +1,52 @@
 <?php
 $packageName = 'nathanjosiah/dep-conf-test-package-a';
-
-$config = [
-    [
-        'constraint' => '1.0.*',
-        'result-type' => 'error'
-    ],
-    [
-        'constraint' => '1.0.3',
-        'result-type' => 'warning'
-    ],
-    [
-        'constraint' => '^1.0.0',
-        'result-type' => 'error'
-    ],
-    [
-        'constraint' => '',
-        'result-type' => 'error'
-    ],
+$publicRepo = [
+    'type' => 'composer',
+    'url' => 'https://repo.packagist.org/'
 ];
+$privateRepo = [
+    'type' => 'composer',
+    'url' => 'https://flamboyant-haibt-5db8f9.netlify.app/'
+];
+
+$csv = <<<DATA
+public_before_private	public_is_canonical	private_is_canonical	constraint
+FALSE	FALSE	FALSE	^1.0.0
+FALSE	FALSE	TRUE	^1.0.0
+FALSE	TRUE	FALSE	^1.0.0
+FALSE	TRUE	TRUE	^1.0.0
+TRUE	FALSE	FALSE	^1.0.0
+TRUE	FALSE	TRUE	^1.0.0
+TRUE	TRUE	FALSE	^1.0.0
+TRUE	TRUE	TRUE	^1.0.0
+FALSE	FALSE	FALSE	1.0.*
+FALSE	FALSE	TRUE	1.0.*
+FALSE	TRUE	FALSE	1.0.*
+FALSE	TRUE	TRUE	1.0.*
+TRUE	FALSE	FALSE	1.0.*
+TRUE	FALSE	TRUE	1.0.*
+TRUE	TRUE	FALSE	1.0.*
+TRUE	TRUE	TRUE	1.0.*
+DATA;
+$fh = tmpfile();
+fwrite($fh,$csv);
+fseek($fh, 0);
+
+$headers = array_flip(fgetcsv($fh, null, "\t"));
+$config = [];
+while ($row = fgetcsv($fh, null, "\t")) {
+    $c = [];
+    foreach ($headers as $header => $index) {
+        $c[$header] = $row[$index];
+        if ($c[$header] === 'FALSE') {
+            $c[$header] = false;
+        } elseif ($c[$header] === 'TRUE') {
+            $c[$header] = true;
+        }
+    }
+    $config[] = $c;
+}
+
 
 function info(string $text) {
     echo "\033[34m" . $text . "\033[0m" . \PHP_EOL;
@@ -35,84 +63,87 @@ function execShell(string $cmd) {
     return $result;
 }
 
-$errors = [];
-
-foreach ($config as $configItem) {
-    $escapedPackageName = escapeshellarg($packageName);
-    $escapedConstraint = escapeshellarg($configItem['constraint']);
-    info('Composer require for ' . $configItem['constraint']);
-    $result = execShell('composer require ' . $escapedPackageName . ($configItem['constraint'] ? ' ' . $escapedConstraint: '') . ' 2>&1');
-    $composer = json_decode(file_get_contents(__DIR__ . \DIRECTORY_SEPARATOR . 'composer.json'), true);
-
-    $hasMessage = strpos($result, 'might\'ve been taken over by a malicious entity,') !== false;
-    $result = execShell('composer show ' . $escapedPackageName . ' 2>&1');
-    $packageInstalled = strpos($result, 'Package ' . $packageName . ' not found') === false;
-    if (!$hasMessage && $configItem['result-type'] !== 'success') {
-        $errors[] = [
-            'config' => $configItem,
-            'type' => 'composer require',
-            'message' => 'no warning/error message detected'
-        ];
-    }
-    if ($packageInstalled && $configItem['result-type'] === 'error') {
-        $errors[] = [
-            'config' => $configItem,
-            'type' => 'composer require',
-            'message' => 'installed anyway'
-        ];
-    } elseif (!$packageInstalled && $configItem['result-type'] !== 'error') {
-        $errors[] = [
-            'config' => $configItem,
-            'type' => 'composer require',
-            'message' => 'not installed'
-        ];
-    }
-
-    if ($packageInstalled) {
-        info('Removing package');
-        execShell('composer remove ' . $escapedPackageName);
-    }
-
-    $composer = json_decode(file_get_contents(__DIR__ . \DIRECTORY_SEPARATOR . 'composer.json'), true);
-    info('Composer update for ' . $configItem['constraint']);
-    $composer['require'][$packageName] = ($configItem['constraint'] ? $configItem['constraint'] : '*');
+function readComposer(): array {
+    return json_decode(file_get_contents(__DIR__ . \DIRECTORY_SEPARATOR . 'composer.json'), true);
+}
+function writeComposer(array $composer): void {
     file_put_contents(__DIR__ . \DIRECTORY_SEPARATOR . 'composer.json', json_encode($composer, \JSON_PRETTY_PRINT));
+}
+
+function isPackageInstalled(string $packageName): string
+{
+    $result = execShell('composer show ' . escapeshellarg($packageName) . ' 2>&1');
+    preg_match('/versions\s+:\s+(?P<version>.*)/', $result, $matches);
+    if (!isset($matches['version'])) {
+        return '';
+    }
+    return $matches['version'];
+}
+function composerRequire(string $packageName, string $constraint): string {
+    return execShell('composer require ' . escapeshellarg($packageName) . ($constraint ? ' ' . escapeshellarg($constraint): '') . ' 2>&1');
+}
+function composerRemove(string $packageName): void {
+    if (isPackageInstalled($packageName)) {
+        execShell('composer remove ' . escapeshellarg($packageName));
+    }
+}
+
+function configureComposer(array $configItem, array $publicRepo, array $privateRepo): void
+{
+
+}
 
 
-    $result = execShell('composer update 2>&1');
-    $hasMessage = strpos($result, 'might\'ve been taken over by a malicious entity,') !== false;
-    $result = execShell('composer show ' . $escapedPackageName . ' 2>&1');
-    $packageInstalled = strpos($result, 'Package ' . $packageName . ' not found') === false;
-    if (!$hasMessage && $configItem['result-type'] !== 'success') {
-        $errors[] = [
-            'config' => $configItem,
-            'type' => 'composer require',
-            'message' => 'no warning/error message detected'
+//public_before_private	public_is_canonical	private_is_canonical	constraint
+composerRemove($packageName);
+
+foreach ($config as &$configItem) {
+    info('public_before_private:' . ($configItem['public_before_private'] ? 'yes' : 'no'));
+    info('public_is_canonical:' . ($configItem['public_is_canonical'] ? 'yes' : 'no'));
+    info('private_is_canonical:' . ($configItem['private_is_canonical'] ? 'yes' : 'no'));
+    info('constraint:' . $configItem['constraint']);
+
+    info('Modifying composer');
+    $composer = readComposer();
+    unset($composer['repositories']['public'],$composer['repositories']['private']);
+
+    if ($configItem['public_before_private']) {
+        $composer['repositories']['public'] = $publicRepo + [
+            'canonical' => $configItem['public_is_canonical']
+        ];
+        $composer['repositories']['private'] = $privateRepo + [
+            'canonical' => $configItem['private_is_canonical']
+        ];
+    } else {
+        $composer['repositories']['private'] = $privateRepo + [
+            'canonical' => $configItem['private_is_canonical']
+        ];
+        $composer['repositories']['public'] = $publicRepo + [
+            'canonical' => $configItem['public_is_canonical']
         ];
     }
-    if ($packageInstalled && $configItem['result-type'] === 'error') {
-        $errors[] = [
-            'config' => $configItem,
-            'type' => 'composer require',
-            'message' => 'installed anyway'
-        ];
-    } elseif (!$packageInstalled && $configItem['result-type'] !== 'error') {
-        $errors[] = [
-            'config' => $configItem,
-            'type' => 'composer require',
-            'message' => 'not installed'
-        ];
-    }
-    if ($packageInstalled) {
+    writeComposer($composer);
+
+    info('Requiring Package');
+    $result = composerRequire($packageName, $configItem['constraint']);
+    $hadAuditErrorMessage = strpos($result, 'might\'ve') !== false;
+    $hadComposerErrorMessage = strpos($result, 'higher repository priority') !== false;
+    $isInstalled = isPackageInstalled($packageName);
+
+    $configItem['version_installed'] = $isInstalled;
+    $configItem['had_audit_message'] = $hadAuditErrorMessage;
+    $configItem['had_composer_error_message'] = $hadComposerErrorMessage;
+
+    if ($isInstalled) {
         info('Removing package');
-        execShell('composer remove ' . $escapedPackageName);
+        composerRemove($packageName);
     }
 }
-
-foreach ($errors as $error) {
-    error('For constraint "' . $error['config']['constraint'] . '" using "' . $error['type'] . '" there was an error: "' . $error['message'] . '"');
+unset($configItem);
+$fh = fopen(__DIR__ . \DIRECTORY_SEPARATOR . 'results' . \DIRECTORY_SEPARATOR . 'results-'. time() . '.csv', 'wb');
+fputcsv($fh, array_keys($config[0]));
+foreach ($config as $configItem) {
+    fputcsv($fh, $configItem);
 }
+fclose($fh);
 
-if (empty($errors)) {
-    info('No detected errors. Done');
-}

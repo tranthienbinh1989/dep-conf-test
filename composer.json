@@ -10,23 +10,22 @@
     "minimum-stability": "dev",
     "require": {
         "php": "^7.4",
-        "ext-json": "*",
-        "magento\/composer-dependency-version-audit-plugin": "dev-AC-970",
-        "nathanjosiah/dep-conf-test-package-a": "^1.0.1"
+        "ext-json": "*"
     },
     "repositories": {
         "dep": {
             "type": "git",
             "url": "git@github.com:magento-cia\/composer-dependency-version-audit-plugin.git"
         },
-        "packagist": {
+        "public": {
             "type": "composer",
-            "url": "https:\/\/repo.packagist.org",
-            "canonical": false
+            "url": "https:\/\/repo.packagist.org\/",
+            "canonical": true
         },
         "private": {
             "type": "composer",
-            "url": "https:\/\/flamboyant-haibt-5db8f9.netlify.app"
+            "url": "https:\/\/flamboyant-haibt-5db8f9.netlify.app\/",
+            "canonical": true
         }
     },
     "scripts": {
