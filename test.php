@@ -131,6 +131,7 @@ foreach ($config as &$configItem) {
     }
 }
 unset($configItem);
+@mkdir(__DIR__ . \DIRECTORY_SEPARATOR . 'results');
 $fh = fopen(__DIR__ . \DIRECTORY_SEPARATOR . 'results' . \DIRECTORY_SEPARATOR . 'results-'. time() . '.csv', 'wb');
 fputcsv($fh, array_keys($config[0]));
 foreach ($config as $configItem) {
