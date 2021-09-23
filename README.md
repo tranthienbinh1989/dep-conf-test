@@ -11,3 +11,9 @@
 2. Run `php configure.php`
 3. Commit and push the changes to this repo trigger a deployment to [Netlify which hosts](https://flamboyant-haibt-5db8f9.netlify.app/) the `build/` folder of this repo from satis.
 4. [Go to `packagist`](https://packagist.org/packages/nathanjosiah/dep-conf-test-package-a) and trigger an update for the public repo. Manage the existing available public package version as needed.
+
+## Auto-tests
+To run all the audit scenarios for your local version of composer:
+
+1. Add the audit plugin locally if needed/desired e.g. `composer require magento/composer-dependency-version-audit-plugin`
+2. Run `php test.php`. This will read the CSV configuration and dump the results to `results/results-*.csv`
