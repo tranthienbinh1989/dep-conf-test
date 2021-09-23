@@ -10,23 +10,61 @@ $privateRepo = [
 ];
 
 $csv = <<<DATA
-public_before_private	public_is_canonical	private_is_canonical	constraint
-FALSE	FALSE	FALSE	^1.0.0
-FALSE	FALSE	TRUE	^1.0.0
-FALSE	TRUE	FALSE	^1.0.0
-FALSE	TRUE	TRUE	^1.0.0
-TRUE	FALSE	FALSE	^1.0.0
-TRUE	FALSE	TRUE	^1.0.0
-TRUE	TRUE	FALSE	^1.0.0
-TRUE	TRUE	TRUE	^1.0.0
-FALSE	FALSE	FALSE	1.0.*
-FALSE	FALSE	TRUE	1.0.*
-FALSE	TRUE	FALSE	1.0.*
-FALSE	TRUE	TRUE	1.0.*
-TRUE	FALSE	FALSE	1.0.*
-TRUE	FALSE	TRUE	1.0.*
-TRUE	TRUE	FALSE	1.0.*
-TRUE	TRUE	TRUE	1.0.*
+public_before_private	public_canonical_defined	private_canonical_defined	public_is_canonical	private_is_canonical	constraint	Composer version
+FALSE	TRUE	TRUE	FALSE	FALSE	^1.0.0	2
+FALSE	TRUE	TRUE	FALSE	TRUE	^1.0.0	2
+FALSE	TRUE	TRUE	TRUE	FALSE	^1.0.0	2
+FALSE	TRUE	TRUE	TRUE	TRUE	^1.0.0	2
+TRUE	TRUE	TRUE	FALSE	FALSE	^1.0.0	2
+TRUE	TRUE	TRUE	FALSE	TRUE	^1.0.0	2
+TRUE	TRUE	TRUE	TRUE	FALSE	^1.0.0	2
+TRUE	TRUE	TRUE	TRUE	TRUE	^1.0.0	2
+FALSE	TRUE	TRUE	FALSE	FALSE	1.0.*	2
+FALSE	TRUE	TRUE	FALSE	TRUE	1.0.*	2
+FALSE	TRUE	TRUE	TRUE	FALSE	1.0.*	2
+FALSE	TRUE	TRUE	TRUE	TRUE	1.0.*	2
+TRUE	TRUE	TRUE	FALSE	FALSE	1.0.*	2
+TRUE	TRUE	TRUE	FALSE	TRUE	1.0.*	2
+TRUE	TRUE	TRUE	TRUE	FALSE	1.0.*	2
+TRUE	TRUE	TRUE	TRUE	TRUE	1.0.*	2
+FALSE	TRUE	TRUE	FALSE	FALSE	1.0.8	2
+FALSE	TRUE	TRUE	FALSE	TRUE	1.0.8	2
+FALSE	TRUE	TRUE	TRUE	FALSE	1.0.8	2
+FALSE	TRUE	TRUE	TRUE	TRUE	1.0.8	2
+TRUE	TRUE	TRUE	FALSE	FALSE	1.0.8	2
+TRUE	TRUE	TRUE	FALSE	TRUE	1.0.8	2
+TRUE	TRUE	TRUE	TRUE	FALSE	1.0.8	2
+TRUE	TRUE	TRUE	TRUE	TRUE	1.0.8	2
+FALSE	FALSE	FALSE	N/A	N/A	^1.0.0	2
+TRUE	FALSE	FALSE	N/A	N/A	^1.0.0	2
+FALSE	FALSE	FALSE	N/A	N/A	1.0.*	2
+TRUE	FALSE	FALSE	N/A	N/A	1.0.*	2
+FALSE	FALSE	FALSE	N/A	N/A	1.0.8	2
+TRUE	FALSE	FALSE	N/A	N/A	1.0.8	2
+FALSE	FALSE	TRUE	N/A	TRUE	^1.0.0	2
+TRUE	FALSE	TRUE	N/A	TRUE	^1.0.0	2
+FALSE	FALSE	TRUE	N/A	TRUE	1.0.*	2
+TRUE	FALSE	TRUE	N/A	TRUE	1.0.*	2
+FALSE	FALSE	TRUE	N/A	TRUE	1.0.8	2
+TRUE	FALSE	TRUE	N/A	TRUE	1.0.8	2
+FALSE	FALSE	TRUE	N/A	FALSE	^1.0.0	2
+TRUE	FALSE	TRUE	N/A	FALSE	^1.0.0	2
+FALSE	FALSE	TRUE	N/A	FALSE	1.0.*	2
+TRUE	FALSE	TRUE	N/A	FALSE	1.0.*	2
+FALSE	FALSE	TRUE	N/A	FALSE	1.0.8	2
+TRUE	FALSE	TRUE	N/A	FALSE	1.0.8	2
+FALSE	TRUE	FALSE	TRUE	N/A	^1.0.0	2
+TRUE	TRUE	FALSE	TRUE	N/A	^1.0.0	2
+FALSE	TRUE	FALSE	TRUE	N/A	1.0.*	2
+TRUE	TRUE	FALSE	TRUE	N/A	1.0.*	2
+FALSE	TRUE	FALSE	TRUE	N/A	1.0.8	2
+TRUE	TRUE	FALSE	TRUE	N/A	1.0.8	2
+FALSE	TRUE	FALSE	FALSE	N/A	^1.0.0	2
+TRUE	TRUE	FALSE	FALSE	N/A	^1.0.0	2
+FALSE	TRUE	FALSE	FALSE	N/A	1.0.*	2
+TRUE	TRUE	FALSE	FALSE	N/A	1.0.*	2
+FALSE	TRUE	FALSE	FALSE	N/A	1.0.8	2
+TRUE	TRUE	FALSE	FALSE	N/A	1.0.8	2
 DATA;
 $fh = tmpfile();
 fwrite($fh,$csv);
@@ -77,7 +115,7 @@ function getInstalledPackageVersion(string $packageName): string
     return $matches['version'];
 }
 function composerRequire(string $packageName, string $constraint): string {
-    return execShell('composer require ' . escapeshellarg($packageName) . ($constraint ? ' ' . escapeshellarg($constraint): '') . ' 2>&1');
+    return execShell('composer require ' . escapeshellarg($packageName) . ($constraint ? ':' . escapeshellarg($constraint): '') . ' 2>&1');
 }
 function composerRemove(string $packageName): void {
     if (getInstalledPackageVersion($packageName)) {
@@ -89,36 +127,31 @@ info('Checking if package is already installed before starting');
 composerRemove($packageName);
 
 foreach ($config as &$configItem) {
-    info('public_before_private:' . ($configItem['public_before_private'] ? 'yes' : 'no'));
-    info('public_is_canonical:' . ($configItem['public_is_canonical'] ? 'yes' : 'no'));
-    info('private_is_canonical:' . ($configItem['private_is_canonical'] ? 'yes' : 'no'));
-    info('constraint:' . $configItem['constraint']);
+    info('public_before_private: ' . ($configItem['public_before_private'] ? 'yes' : 'no'));
+    info('public_canonical_defined: ' . ($configItem['public_canonical_defined'] ? 'yes' : 'no'));
+    info('private_canonical_defined: ' . ($configItem['private_canonical_defined'] ? 'yes' : 'no'));
+    info('public_is_canonical: ' . ($configItem['public_is_canonical'] ? 'yes' : 'no'));
+    info('private_is_canonical: ' . ($configItem['private_is_canonical'] ? 'yes' : 'no'));
+    info('constraint: ' . $configItem['constraint']);
 
     info('Modifying composer');
     $composer = readComposer();
     unset($composer['repositories']['public'],$composer['repositories']['private']);
-
-    if ($configItem['public_before_private']) {
-        $composer['repositories']['public'] = $publicRepo + [
-            'canonical' => $configItem['public_is_canonical']
-        ];
-        $composer['repositories']['private'] = $privateRepo + [
-            'canonical' => $configItem['private_is_canonical']
-        ];
-    } else {
-        $composer['repositories']['private'] = $privateRepo + [
-            'canonical' => $configItem['private_is_canonical']
-        ];
-        $composer['repositories']['public'] = $publicRepo + [
-            'canonical' => $configItem['public_is_canonical']
-        ];
+    $order = ($configItem['public_before_private'] ? ['public', 'private'] : ['private','public']);
+    $composer['repositories'][$order[0]] = ${$order[0] . 'Repo'};
+    $composer['repositories'][$order[1]] = ${$order[1] . 'Repo'};
+    if ($configItem['public_canonical_defined']) {
+        $composer['repositories']['public']['canonical'] = $configItem['public_is_canonical'];
+    }
+    if ($configItem['private_canonical_defined']) {
+        $composer['repositories']['private']['canonical'] = $configItem['private_is_canonical'];
     }
     writeComposer($composer);
 
     info('Requiring Package');
     $result = composerRequire($packageName, $configItem['constraint']);
     $hadAuditErrorMessage = strpos($result, 'might\'ve') !== false;
-    $hadComposerErrorMessage = strpos($result, 'higher repository priority') !== false;
+    $hadComposerErrorMessage = strpos($result, 'packages with higher priority') !== false;
     $installedPackageVersion = getInstalledPackageVersion($packageName);
 
     $configItem['version_installed'] = $installedPackageVersion;
@@ -135,6 +168,13 @@ unset($configItem);
 $fh = fopen(__DIR__ . \DIRECTORY_SEPARATOR . 'results' . \DIRECTORY_SEPARATOR . 'results-'. time() . '.csv', 'wb');
 fputcsv($fh, array_keys($config[0]));
 foreach ($config as $configItem) {
+    foreach ($configItem as $key => $item) {
+        if ($item === true) {
+            $configItem[$key] = 'TRUE';
+        } elseif ($item === false) {
+            $configItem[$key] = 'FALSE';
+        }
+    }
     fputcsv($fh, $configItem);
 }
 fclose($fh);
