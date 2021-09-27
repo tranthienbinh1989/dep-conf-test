@@ -18,14 +18,13 @@
             "type": "git",
             "url": "git@github.com:magento-cia\/composer-dependency-version-audit-plugin.git"
         },
+        "public": {
+            "type": "composer",
+            "url": "https:\/\/repo.packagist.org\/"
+        },
         "private": {
             "type": "composer",
             "url": "https:\/\/flamboyant-haibt-5db8f9.netlify.app\/"
-        },
-        "public": {
-            "type": "composer",
-            "url": "https:\/\/repo.packagist.org\/",
-            "canonical": false
         }
     },
     "scripts": {

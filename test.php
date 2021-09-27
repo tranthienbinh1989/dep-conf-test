@@ -10,7 +10,7 @@ $privateRepo = [
 ];
 
 $csv = <<<DATA
-public_before_private	public_canonical_defined	private_canonical_defined	public_is_canonical	private_is_canonical	constraint	Composer version
+public_before_private	public_canonical_defined	private_canonical_defined	public_is_canonical	private_is_canonical	constraint	composer_version
 FALSE	TRUE	TRUE	FALSE	FALSE	^1.0.0	2
 FALSE	TRUE	TRUE	FALSE	TRUE	^1.0.0	2
 FALSE	TRUE	TRUE	TRUE	FALSE	^1.0.0	2
@@ -65,6 +65,14 @@ FALSE	TRUE	FALSE	FALSE	N/A	1.0.*	2
 TRUE	TRUE	FALSE	FALSE	N/A	1.0.*	2
 FALSE	TRUE	FALSE	FALSE	N/A	1.0.8	2
 TRUE	TRUE	FALSE	FALSE	N/A	1.0.8	2
+FALSE	FALSE	FALSE	N/A	N/A	^1.0.0	1
+FALSE	FALSE	FALSE	N/A	N/A	*	1
+FALSE	FALSE	FALSE	N/A	N/A	1.0.8	1
+FALSE	FALSE	FALSE	N/A	N/A	1.0.*	1
+TRUE	FALSE	FALSE	N/A	N/A	^1.0.0	1
+TRUE	FALSE	FALSE	N/A	N/A	*	1
+TRUE	FALSE	FALSE	N/A	N/A	1.0.8	1
+TRUE	FALSE	FALSE	N/A	N/A	1.0.*	1
 DATA;
 $fh = tmpfile();
 fwrite($fh,$csv);
@@ -126,6 +134,9 @@ function composerRemove(string $packageName): void {
 info('Checking if package is already installed before starting');
 composerRemove($packageName);
 
+preg_match('/version (?P<major>\d)/', execShell('composer -V'), $currentComposerVersion);
+$lastComposerVersion = (int)$currentComposerVersion['major'];
+
 foreach ($config as &$configItem) {
     info('public_before_private: ' . ($configItem['public_before_private'] ? 'yes' : 'no'));
     info('public_canonical_defined: ' . ($configItem['public_canonical_defined'] ? 'yes' : 'no'));
@@ -133,6 +144,13 @@ foreach ($config as &$configItem) {
     info('public_is_canonical: ' . ($configItem['public_is_canonical'] ? 'yes' : 'no'));
     info('private_is_canonical: ' . ($configItem['private_is_canonical'] ? 'yes' : 'no'));
     info('constraint: ' . $configItem['constraint']);
+    info('composer_version: ' . $configItem['composer_version']);
+
+    if ($lastComposerVersion !== (int)$configItem['composer_version']) {
+        info('Switching composer version');
+        execShell('composer self-update --' . $configItem['composer_version']);
+        $lastComposerVersion = (int)$configItem['composer_version'];
+    }
 
     info('Modifying composer');
     $composer = readComposer();
