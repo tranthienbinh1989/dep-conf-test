@@ -20,11 +20,13 @@
         },
         "public": {
             "type": "composer",
-            "url": "https:\/\/repo.packagist.org\/"
+            "url": "https:\/\/repo.packagist.org\/",
+            "canonical": true
         },
         "private": {
             "type": "composer",
-            "url": "https:\/\/flamboyant-haibt-5db8f9.netlify.app\/"
+            "url": "https:\/\/flamboyant-haibt-5db8f9.netlify.app\/",
+            "canonical": true
         }
     },
     "scripts": {
