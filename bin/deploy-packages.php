@@ -44,7 +44,7 @@ $satisConfig['require'][$packageConfig['package-name']] = $packageConfig['privat
 file_put_contents($satisPath, json_encode($satisConfig, \JSON_PRETTY_PRINT));
 
 execShell("composer run-script build-satis");
-$packageJsonPath = __DIR__ . \DIRECTORY_SEPARATOR . 'build' . \DIRECTORY_SEPARATOR . 'packages.json';
+$packageJsonPath = __DIR__ . \DIRECTORY_SEPARATOR . '..' . DIRECTORY_SEPARATOR . 'build' . \DIRECTORY_SEPARATOR . 'packages.json';
 $packageJson = json_decode(file_get_contents($packageJsonPath), true);
 $packageJson['metadata-url'] = '/p2/%package%.json';
 $packageJson['require'] = [];
