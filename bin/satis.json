@@ -1,0 +1,5 @@
+{
+    "require": {
+        "nathanjosiah\/dep-conf-test-package-a": "1.0.9"
+    }
+}

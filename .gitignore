@@ -5,3 +5,5 @@ package-b
 package-c
 satis
 results
+config/*
+!config/*.dist

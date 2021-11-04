@@ -16,20 +16,18 @@
     "repositories": {
         "dep": {
             "type": "git",
-            "url": "git@github.com:magento-cia\/composer-dependency-version-audit-plugin.git"
-        },
-        "public": {
-            "type": "composer",
-            "url": "https:\/\/repo.packagist.org\/",
-            "canonical": true
+            "url": "git@github.com:magento-cia\/composer-dependency-version-audit-plugin"
         },
         "private": {
             "type": "composer",
-            "url": "https:\/\/flamboyant-haibt-5db8f9.netlify.app\/",
-            "canonical": true
+            "url": "https:\/\/flamboyant-haibt-5db8f9.netlify.app\/"
+        },
+        "public": {
+            "type": "composer",
+            "url": "https:\/\/repo.packagist.org\/"
         }
     },
     "scripts": {
-        "build-satis": "satis\/bin\/satis build satis.json build\/"
+        "build-satis": "satis\/bin\/satis build config\/satis.json build\/"
     }
 }

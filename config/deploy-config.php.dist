@@ -1,0 +1,10 @@
+<?php
+
+return [
+    'package-path' => __DIR__ . DIRECTORY_SEPARATOR . '..' . DIRECTORY_SEPARATOR . 'package-a',
+    'public' => '1.0.8',
+    'private' => '1.0.7',
+    'private-remote' => 'origin',
+    'public-remote' => 'public',
+    'package-name' => 'nathanjosiah/dep-conf-test-package-a'
+];

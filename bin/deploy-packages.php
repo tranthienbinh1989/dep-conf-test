@@ -1,17 +1,7 @@
 <?php
+$packageConfig = include __DIR__ . DIRECTORY_SEPARATOR . '..' . DIRECTORY_SEPARATOR . 'config' . DIRECTORY_SEPARATOR . 'deploy-config.php';
 
-$packagePath = __DIR__ . DIRECTORY_SEPARATOR . 'package-a';
-
-// Refer to the testing-scenarios.txt for a list of configuration to test
-$packageConfig = [
-    'public' => '1.0.8',
-    'private' => '1.0.7',
-    'private-remote' => 'origin',
-    'public-remote' => 'public',
-    'package-name' => 'nathanjosiah/dep-conf-test-package-a'
-];
-
-var_dump($packageConfig);
+$packagePath = realpath($packageConfig['package-path']);
 
 function info(string $text) {
     echo "\033[34m" . $text . "\033[0m" . \PHP_EOL;
