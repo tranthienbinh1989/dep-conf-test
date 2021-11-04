@@ -38,7 +38,7 @@ info('PRIVATE: Pushing private tag');
 execShell("git ${gitC} push " . escapeshellarg($packageConfig['private-remote']) . ' ' . escapeshellarg($packageConfig['private']) . ' --force');
 
 info('Building packages');
-$satisPath = __DIR__ . \DIRECTORY_SEPARATOR . 'satis.json';
+$satisPath = __DIR__ . \DIRECTORY_SEPARATOR . '..' . DIRECTORY_SEPARATOR . 'config' . DIRECTORY_SEPARATOR . 'satis.json';
 $satisConfig = json_decode(file_get_contents($satisPath), true);
 $satisConfig['require'][$packageConfig['package-name']] = $packageConfig['private'];
 file_put_contents($satisPath, json_encode($satisConfig, \JSON_PRETTY_PRINT));

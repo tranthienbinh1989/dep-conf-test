@@ -1,12 +1,14 @@
 {
     "packages": [],
     "includes": {
-        "include\/all$96e5c0926e9d7f87094d1ba307e38ea76cd09c53.json": {
-            "sha1": "96e5c0926e9d7f87094d1ba307e38ea76cd09c53"
+        "include\/all$0d13359f0f5fa31a4e2bc6101e3f789a373afdf1.json": {
+            "sha1": "0d13359f0f5fa31a4e2bc6101e3f789a373afdf1"
         }
     },
     "metadata-url": "\/p2\/%package%.json",
-    "available-packages": [],
+    "available-packages": [
+        "nathanjosiah\/dep-conf-test-package-a"
+    ],
     "require": {
         "nathanjosiah\/dep-conf-test-package-a": "1.0.9"
     }
