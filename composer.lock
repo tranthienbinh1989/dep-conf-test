@@ -31,6 +31,7 @@
                 "symfony/phpunit-bridge": "^4.2 || ^5",
                 "symfony/process": "^2.5 || ^3.0 || ^4.0 || ^5.0 || ^6.0"
             },
+            "default-branch": true,
             "type": "library",
             "extra": {
                 "branch-alias": {
@@ -122,6 +123,7 @@
                 "ext-zip": "Enabling the zip extension allows you to unzip archives",
                 "ext-zlib": "Allow gzip compression of HTTP requests"
             },
+            "default-branch": true,
             "bin": [
                 "bin/composer"
             ],
@@ -202,6 +204,7 @@
                 "phpstan/phpstan": "^0.12.55",
                 "symfony/phpunit-bridge": "^4.2 || ^5"
             },
+            "default-branch": true,
             "type": "library",
             "extra": {
                 "branch-alias": {
@@ -270,6 +273,7 @@
                 "phpstan/phpstan": "^0.12.54",
                 "symfony/phpunit-bridge": "^4.2 || ^5"
             },
+            "default-branch": true,
             "type": "library",
             "extra": {
                 "branch-alias": {
@@ -351,6 +355,7 @@
                 "phpstan/phpstan": "^0.12.55",
                 "symfony/phpunit-bridge": "^4.2 || ^5"
             },
+            "default-branch": true,
             "type": "library",
             "extra": {
                 "branch-alias": {
@@ -551,12 +556,6 @@
                 "type": "git",
                 "url": "git@github.com:magento-cia/composer-dependency-version-audit-plugin",
                 "reference": "da9502686529792180f461823e90c194bb1c64df"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/composer/composer/zipball/da9502686529792180f461823e90c194bb1c64df",
-                "reference": "da9502686529792180f461823e90c194bb1c64df",
-                "shasum": ""
             },
             "require": {
                 "composer-plugin-api": "^1.0 || ^2.0",
@@ -860,12 +859,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/console.git",
-                "reference": "b55ba2e43b8a2a5b5235b27aac3c9da7981f6918"
+                "reference": "bea7632e3b1d12decedba0a7fe7a7e0ebf7ee2f4"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/console/zipball/b55ba2e43b8a2a5b5235b27aac3c9da7981f6918",
-                "reference": "b55ba2e43b8a2a5b5235b27aac3c9da7981f6918",
+                "url": "https://api.github.com/repos/symfony/console/zipball/bea7632e3b1d12decedba0a7fe7a7e0ebf7ee2f4",
+                "reference": "bea7632e3b1d12decedba0a7fe7a7e0ebf7ee2f4",
                 "shasum": ""
             },
             "require": {
@@ -951,7 +950,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2021-11-04T15:02:41+00:00"
+            "time": "2021-11-04T16:48:04+00:00"
         },
         {
             "name": "symfony/deprecation-contracts",
@@ -1170,6 +1169,7 @@
             "suggest": {
                 "ext-ctype": "For best performance"
             },
+            "default-branch": true,
             "type": "library",
             "extra": {
                 "branch-alias": {
@@ -1249,6 +1249,7 @@
             "suggest": {
                 "ext-intl": "For best performance"
             },
+            "default-branch": true,
             "type": "library",
             "extra": {
                 "branch-alias": {
@@ -1330,6 +1331,7 @@
             "suggest": {
                 "ext-intl": "For best performance"
             },
+            "default-branch": true,
             "type": "library",
             "extra": {
                 "branch-alias": {
@@ -1417,6 +1419,7 @@
             "suggest": {
                 "ext-mbstring": "For best performance"
             },
+            "default-branch": true,
             "type": "library",
             "extra": {
                 "branch-alias": {
@@ -1494,6 +1497,7 @@
             "require": {
                 "php": ">=7.1"
             },
+            "default-branch": true,
             "type": "library",
             "extra": {
                 "branch-alias": {
@@ -1573,6 +1577,7 @@
             "require": {
                 "php": ">=7.1"
             },
+            "default-branch": true,
             "type": "library",
             "extra": {
                 "branch-alias": {
@@ -1645,12 +1650,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/process.git",
-                "reference": "6bacc79268fb8a2fac52c9f66afe5e041220233f"
+                "reference": "cbdd4cdf3fc834638c13f3ba26c2ce657a3987ec"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/process/zipball/6bacc79268fb8a2fac52c9f66afe5e041220233f",
-                "reference": "6bacc79268fb8a2fac52c9f66afe5e041220233f",
+                "url": "https://api.github.com/repos/symfony/process/zipball/cbdd4cdf3fc834638c13f3ba26c2ce657a3987ec",
+                "reference": "cbdd4cdf3fc834638c13f3ba26c2ce657a3987ec",
                 "shasum": ""
             },
             "require": {
@@ -1699,7 +1704,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2021-11-03T09:24:47+00:00"
+            "time": "2021-11-04T16:48:04+00:00"
         },
         {
             "name": "symfony/service-contracts",
@@ -1880,5 +1885,5 @@
         "ext-json": "*"
     },
     "platform-dev": [],
-    "plugin-api-version": "1.1.0"
+    "plugin-api-version": "2.1.0"
 }
