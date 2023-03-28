@@ -7,11 +7,11 @@
             "email": "nathsmit@adobe.com"
         }
     ],
-    "minimum-stability": "dev",
+    "minimum-stability": "beta",
     "require": {
-        "php": "^7.4",
+        "php": "^8.1",
         "ext-json": "*",
-        "magento\/composer-dependency-version-audit-plugin": "dev-AC-970"
+        "magento\/composer-dependency-version-audit-plugin": "dev-AC-8025"
     },
     "repositories": {
         "dep": {
@@ -20,7 +20,7 @@
         },
         "private": {
             "type": "composer",
-            "url": "https:\/\/flamboyant-haibt-5db8f9.netlify.app\/"
+            "url": "https:\\/\\/benevolent-stroopwafel-310d17.netlify.app"
         },
         "public": {
             "type": "composer",

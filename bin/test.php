@@ -1,12 +1,12 @@
 <?php
-$packageName = 'nathanjosiah/dep-conf-test-package-a';
+$packageName = 'admanesachin/test-package-a';
 $publicRepo = [
     'type' => 'composer',
     'url' => 'https://repo.packagist.org/'
 ];
 $privateRepo = [
     'type' => 'composer',
-    'url' => 'https://flamboyant-haibt-5db8f9.netlify.app/'
+    'url' => 'https://benevolent-stroopwafel-310d17.netlify.app'
 ];
 
 $fh = fopen(__DIR__ . DIRECTORY_SEPARATOR . '..' . DIRECTORY_SEPARATOR . 'config' . DIRECTORY_SEPARATOR . 'test-config.csv', 'rb');
