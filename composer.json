@@ -20,7 +20,7 @@
         },
         "private": {
             "type": "composer",
-            "url": "https:\\/\\/benevolent-stroopwafel-310d17.netlify.app"
+            "url": "https:\/\/benevolent-stroopwafel-310d17.netlify.app"
         },
         "public": {
             "type": "composer",
@@ -29,5 +29,10 @@
     },
     "scripts": {
         "build-satis": "satis\/bin\/satis build config\/satis.json build\/"
+    },
+    "config": {
+        "allow-plugins": {
+            "magento/composer-dependency-version-audit-plugin": true
+        }
     }
 }
