@@ -1,5 +1,5 @@
 <?php
-$constraints = ['^1.0.0','~1.0.0','1.0.*','1.0.8','>1.0.0 <=2.0.0','1.0.0 - 2.0.0','*'];
+$constraints = ['^1.0.0','~1.0.0','1.0.*','1.0.8','>1.0.0 <=2.0.0','1.0.0 - 2.0.0','^1.0.2-beta1','*'];
 $filePath = __DIR__ . DIRECTORY_SEPARATOR . '..' . DIRECTORY_SEPARATOR . 'config' . DIRECTORY_SEPARATOR . 'test-config.csv';
 
 

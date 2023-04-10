@@ -1,12 +1,12 @@
 <?php
-$packageName = 'admanesachin/test-package-a';
+$packageName = 'nathanjosiah/dep-conf-test-package-a';
 $publicRepo = [
     'type' => 'composer',
     'url' => 'https://repo.packagist.org/'
 ];
 $privateRepo = [
     'type' => 'composer',
-    'url' => 'https://benevolent-stroopwafel-310d17.netlify.app'
+    'url' => 'https://flamboyant-haibt-5db8f9.netlify.app/'
 ];
 
 $fh = fopen(__DIR__ . DIRECTORY_SEPARATOR . '..' . DIRECTORY_SEPARATOR . 'config' . DIRECTORY_SEPARATOR . 'test-config.csv', 'rb');
@@ -62,12 +62,12 @@ function getInstalledPackageVersion(string $packageName): string
 function composerRequire(string $packageName, string $constraint): string {
     $constraint = ($constraint === '*' ? null : $constraint);
     $composerDirectoryArg = '-d ' . escapeshellarg(realpath(__DIR__ . DIRECTORY_SEPARATOR . '..')) . ' ';
-    return execShell('composer require ' . $composerDirectoryArg . escapeshellarg($packageName) . ($constraint ? ':' . escapeshellarg($constraint): '') . ' 2>&1');
+    return execShell('COMPOSER_MEMORY_LIMIT=-1 composer require ' . $composerDirectoryArg . escapeshellarg($packageName) . ($constraint ? ':' . escapeshellarg($constraint): '') . ' 2>&1');
 }
 function composerRemove(string $packageName): void {
     if (getInstalledPackageVersion($packageName)) {
         $composerDirectoryArg = '-d ' . escapeshellarg(realpath(__DIR__ . DIRECTORY_SEPARATOR . '..')) . ' ';
-        execShell('composer remove ' . $composerDirectoryArg . escapeshellarg($packageName));
+        execShell('COMPOSER_MEMORY_LIMIT=-1 composer remove ' . $composerDirectoryArg . escapeshellarg($packageName));
     }
 }
 
@@ -114,7 +114,7 @@ foreach ($config as $index => &$configItem) {
     info('Requiring Package');
     $result = composerRequire($packageName, $configItem['constraint']);
     $hadAuditErrorMessage = strpos($result, 'might\'ve') !== false;
-    $hadComposerErrorMessage = strpos($result, 'packages with higher priority') !== false;
+    $hadComposerErrorMessage = strpos($result, 'packages from the higher priority') !== false;
     $installedPackageVersion = getInstalledPackageVersion($packageName);
 
     $configItem['version_installed'] = $installedPackageVersion;
